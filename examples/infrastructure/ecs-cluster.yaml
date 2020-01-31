@@ -360,10 +360,8 @@ Resources:
         Ref: ECSServiceLogGroupRetentionInDays
 
   ECSServiceDiscoveryNamespace:
-    Type: AWS::ServiceDiscovery::PrivateDnsNamespace
+    Type: AWS::ServiceDiscovery::HttpNamespace
     Properties:
-      Vpc:
-        'Fn::ImportValue': !Sub "${EnvironmentName}:VPC"
       Name: { Ref: ECSServicesDomain }
 
   BastionSecurityGroup:

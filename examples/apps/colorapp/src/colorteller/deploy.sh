@@ -21,5 +21,5 @@ GO_PROXY=${GO_PROXY:-"https://proxy.golang.org"}
 docker build --build-arg GO_PROXY=$GO_PROXY -t $COLOR_TELLER_IMAGE ${DIR}
 
 # push
-$(aws ecr get-login --no-include-email)
+$(aws-profile webops-sandbox aws ecr get-login --no-include-email)
 docker push $COLOR_TELLER_IMAGE

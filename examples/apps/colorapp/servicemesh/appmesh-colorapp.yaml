@@ -32,8 +32,9 @@ Resources:
               TimeoutMillis: 2000
               IntervalMillis: 5000
         ServiceDiscovery:
-          DNS:
-            Hostname: !Sub "colorteller-black.${ServicesDomain}"
+          AWSCloudMap:
+            NamespaceName: !Sub "${ServicesDomain}"
+            ServiceName: colorteller-black
 
   ColorTellerBlueVirtualNode:
     Type: AWS::AppMesh::VirtualNode
@@ -53,8 +54,9 @@ Resources:
               TimeoutMillis: 2000
               IntervalMillis: 5000
         ServiceDiscovery:
-          DNS:
-            Hostname: !Sub "colorteller-blue.${ServicesDomain}"
+          AWSCloudMap:
+            NamespaceName: !Sub "${ServicesDomain}"
+            ServiceName: colorteller-blue
 
   ColorTellerRedVirtualNode:
     Type: AWS::AppMesh::VirtualNode
@@ -74,8 +76,9 @@ Resources:
               TimeoutMillis: 2000
               IntervalMillis: 5000
         ServiceDiscovery:
-          DNS:
-            Hostname: !Sub "colorteller-red.${ServicesDomain}"
+          AWSCloudMap:
+            NamespaceName: !Sub "${ServicesDomain}"
+            ServiceName: colorteller-red
 
   ColorTellerWhiteVirtualNode:
     Type: AWS::AppMesh::VirtualNode
@@ -95,8 +98,9 @@ Resources:
               TimeoutMillis: 2000
               IntervalMillis: 5000
         ServiceDiscovery:
-          DNS:
-            Hostname: !Sub "colorteller.${ServicesDomain}"
+          AWSCloudMap:
+            NamespaceName: !Sub "${ServicesDomain}"
+            ServiceName: colorteller-white
 
   ColorTellerVirtualRouter:
     Type: AWS::AppMesh::VirtualRouter
@@ -162,8 +166,9 @@ Resources:
               TimeoutMillis: 2000
               IntervalMillis: 5000
         ServiceDiscovery:
-          DNS:
-            Hostname: !Sub "tcpecho.${ServicesDomain}"
+          AWSCloudMap:
+            NamespaceName: !Sub "${ServicesDomain}"
+            ServiceName: tcpecho
 
   TcpEchoVirtualService:
     Type: AWS::AppMesh::VirtualService
@@ -186,15 +191,16 @@ Resources:
       MeshName: !Ref AppMeshMeshName
       VirtualNodeName: colorgateway-vn
       Spec:
-        Listeners:
-          - PortMapping:
-              Port: 9080
-              Protocol: http
-        ServiceDiscovery:
-          DNS:
-            Hostname: !Sub "colorgateway.${ServicesDomain}"
         Backends:
           - VirtualService:
               VirtualServiceName: !Sub "colorteller.${ServicesDomain}"
           - VirtualService:
               VirtualServiceName: !Sub "tcpecho.${ServicesDomain}"
+        Listeners:
+          - PortMapping:
+              Port: 9080
+              Protocol: http
+        ServiceDiscovery:
+          AWSCloudMap:
+            NamespaceName: !Sub "${ServicesDomain}"
+            ServiceName: colorgateway

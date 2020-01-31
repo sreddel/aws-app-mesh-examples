@@ -9,16 +9,12 @@
         "value": "1337"
       },
       {
-        "name": "ProxyIngressPort",
-        "value": "15000"
-      },
-      {
         "name": "ProxyEgressPort",
         "value": "15001"
       },
       {
-        "name": "AppPorts",
-        "value": "9080"
+        "name": "EgressIgnoredPorts",
+        "value": "443"
       },
       {
         "name": "EgressIgnoredIPs",
@@ -32,8 +28,8 @@
       "image": $APP_IMAGE,
       "portMappings": [
         {
-          "containerPort": 9080,
-          "hostPort": 9080,
+          "containerPort": 443,
+          "hostPort": 443,
           "protocol": "tcp"
         }
       ],

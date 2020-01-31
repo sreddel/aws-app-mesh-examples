@@ -21,6 +21,10 @@
         "value": "9080"
       },
       {
+        "name": "EgressIgnoredPorts",
+        "value": "443"
+      },
+      {
         "name": "EgressIgnoredIPs",
         "value": "169.254.170.2,169.254.169.254"
       }
