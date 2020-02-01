@@ -9,6 +9,10 @@
         "value": "1337"
       },
       {
+        "name": "ProxyIngressPort",
+        "value": "15000"
+      },
+      {
         "name": "ProxyEgressPort",
         "value": "15001"
       },
